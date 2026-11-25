@@ -60,7 +60,7 @@ table.checklist thead tr, table.checklist tbody tr:nth-child(-n+2){break-after:a
 
   // Agrupa los textos de la 1a pagina en lineas (por altura) y ordena por X
   async function leerPdf(buf){
-    var pdf=await pdfjsLib.getDocument({data:buf}).promise;
+    var pdf=await pdfjsLib.getDocument({data:buf,isEvalSupported:false}).promise;
     var page=await pdf.getPage(1);
     var tc=await page.getTextContent();
     var items=tc.items.filter(function(i){return i.str.trim();}).map(function(i){return {s:i.str.trim(),x:i.transform[4],y:i.transform[5]};});
